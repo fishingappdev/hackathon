@@ -1,1 +1,14 @@
 /build
+
+.gradle/
+
+*.iml
+.idea/
+
+
+*~
+*.swp
+
+local.properties
+
+*.keystore.password

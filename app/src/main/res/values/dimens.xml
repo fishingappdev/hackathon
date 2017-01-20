@@ -13,4 +13,5 @@
     <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="sp_20">20sp</dimen>
+    <dimen name="QR_IMAGE_DIMEN">200dp</dimen>
 </resources>

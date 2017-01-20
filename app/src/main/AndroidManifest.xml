@@ -30,6 +30,10 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".NFCActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActionActivity"
             android:launchMode="singleTop">
             <action android:name="android.nfc.action.TAG_DISCOVERED" />
         </activity>

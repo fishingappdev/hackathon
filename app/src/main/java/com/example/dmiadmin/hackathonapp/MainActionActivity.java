@@ -1,25 +1,35 @@
 package com.example.dmiadmin.hackathonapp;
 
 import android.app.PendingIntent;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.FormatException;
+=======
+import android.content.Intent;
+>>>>>>> Initial push
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+<<<<<<< HEAD
 import android.nfc.TagLostException;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
+=======
+>>>>>>> Initial push
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+=======
+>>>>>>> Initial push
 public class MainActionActivity extends AppCompatActivity {
     NfcAdapter mNfcAdapter;
 
@@ -71,14 +81,21 @@ public class MainActionActivity extends AppCompatActivity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 
             NfcA ndef = NfcA.get(tag);
+<<<<<<< HEAD
             writeTag(MainActionActivity.this, tag, "Hello");
             ndef.getTag();
+=======
+>>>>>>> Initial push
             try {
                 Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 
                 if (messages != null) {
                     NdefMessage[] ndefMessages = new NdefMessage[messages.length];
                     for (int i = 0; i < messages.length; i++) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> Initial push
                         ndefMessages[i] = (NdefMessage) messages[i];
                     }
                     NdefRecord record = ndefMessages[0].getRecords()[0];
@@ -93,6 +110,7 @@ public class MainActionActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
 
     public static boolean writeTag(Context context, Tag tag, String data) {
         // Record to launch Play Store if app is not installed
@@ -158,4 +176,6 @@ public class MainActionActivity extends AppCompatActivity {
         return false;
     }
 
+=======
+>>>>>>> Initial push
 }

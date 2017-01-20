@@ -12,12 +12,20 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <uses-feature
             android:name="android.hardware.nfc"
             android:required="true" />
@@ -26,9 +34,10 @@
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
             </intent-filter>
         </activity>
         <activity
@@ -67,6 +76,43 @@
         </intent-filter>
     </activity>
 
-</application>
+            />
+        <receiver android:name="com.example.dmiadmin.hackathonapp.geofence.utils.GeofenceBroadcastReceiver" />
+        <activity android:name="com.example.dmiadmin.hackathonapp.geofence.GeofenceActivity" >
+
+        <intent-filter>
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.dmiadmin.hackathonapp.geofence.GeofenceClientActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
+        <activity android:name="com.example.dmiadmin.hackathonapp.geofence.client.MainClientActivity" >
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+            <action android:name="android.intent.action.MAIN" />
+        </intent-filter>
+    </activity>
+
+        <activity android:name=".geofence.client.NewPostActivity" />
+        <activity android:name=".geofence.client.SignInActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".geofence.client.PostDetailActivity"></activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/API_KEY" />
+    </application>
 
     </manifest>

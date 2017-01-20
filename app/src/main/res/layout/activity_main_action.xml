@@ -100,7 +100,17 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 
                 />
-
+            <Button
+                android:id="@+id/geofence_device_list_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:layout_alignParentRight="true"
+                android:text="GEOFENCE DEVICE TRACKING"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/dp_20"
+                />
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -30,6 +31,10 @@ import com.example.dmiadmin.hackathonapp.model.Employee;
 import com.example.dmiadmin.hackathonapp.util.DatabaseHelper;
 import com.example.dmiadmin.hackathonapp.utilhack.Utils;
 
+import com.example.dmiadmin.hackathonapp.geofence.GeofenceActivity;
+import com.example.dmiadmin.hackathonapp.geofence.client.MainClientActivity;
+
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 
@@ -38,27 +43,28 @@ import model.DeviceInfoModel;
 
 public class MainActionActivity extends AppCompatActivity implements View.OnClickListener {
     NfcAdapter mNfcAdapter;
-    private Button mAddBtn, mRemoveBtn, mAllocateBtn, mDeallocateBtn, mGeofenceBtn;
+    private Button mAddBtn, mRemoveBtn, mAllocateBtn, mDeallocateBtn;
 
     public final static int REQUEST_READ_PHONE_STATE = 1001;
     public final static int REQUEST_WRITE_EXTERNAL_STORAGE = 1002;
+    Button geofence_device_button;
+    Button geofence_device_list_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_action);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        mAddBtn = (Button) findViewById(R.id.add_device_button);
-        mRemoveBtn = (Button) findViewById(R.id.remove_device_button);
-        mAllocateBtn = (Button) findViewById(R.id.allocate_device_button);
-        mDeallocateBtn = (Button) findViewById(R.id.deallocate_device_button);
-        mGeofenceBtn = (Button) findViewById(R.id.geofence_device_button);
+        mAddBtn=(Button)findViewById(R.id.add_device_button);
+        mRemoveBtn=(Button)findViewById(R.id.remove_device_button);
+        mAllocateBtn=(Button)findViewById(R.id.allocate_device_button);
+        mDeallocateBtn=(Button)findViewById(R.id.deallocate_device_button);
 
         mAddBtn.setOnClickListener(this);
         mRemoveBtn.setOnClickListener(this);
         mAllocateBtn.setOnClickListener(this);
         mDeallocateBtn.setOnClickListener(this);
-        mGeofenceBtn.setOnClickListener(this);
 
         com.example.dmiadmin.hackathonapp.util.DatabaseHelper db = new DatabaseHelper(this);
 
@@ -67,13 +73,19 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
          * */
         // Inserting employee
         Log.d("Insert: ", "Inserting ..");
-        db.addEmployee(new Employee("EO167DMP", "Swati Singh"));
-        db.addEmployee(new Employee("EO139DMP", "Karan Singh"));
-        db.addEmployee(new Employee("EO275DMP", "Sarthak Srivastava"));
-        db.addEmployee(new Employee("EO268DMP", "Siddharth Dixit"));
-        db.addEmployee(new Employee("EO220DMP", "Nitish Srivastava"));
+//        db.addEmployee(new Employee("EO167DMP", "Swati Singh"));
+//        db.addEmployee(new Employee("EO139DMP", "Karan Singh"));
+//        db.addEmployee(new Employee("EO275DMP","Sarthak Srivastava"));
+//        db.addEmployee(new Employee("EO268DMP","Siddharth Dixit"));
+//        db.addEmployee(new Employee("EO220DMP","Nitish Srivastava"));
+       Log.d("countemployee",db.getContactsCount()+">>");
 
 
+
+        geofence_device_button = (Button) findViewById(R.id.geofence_device_button);
+        geofence_device_list_button = (Button) findViewById(R.id.geofence_device_list_button);
+        geofence_device_button.setOnClickListener(this);
+        geofence_device_list_button.setOnClickListener(this);
         if (mNfcAdapter == null) {
             // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
@@ -205,7 +217,6 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
         return false;
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -222,7 +233,17 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
                     } else
                         writeCode();
                 }
-
+                break;
+            case R.id.geofence_device_button: {
+                Intent intent = new Intent(this, GeofenceActivity.class);
+                startActivity(intent);
+            }
+            break;
+            case R.id.geofence_device_list_button: {
+                Intent intent = new Intent(this, MainClientActivity.class);
+                startActivity(intent);
+            }
+            break;
         }
     }
 
@@ -247,6 +268,7 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
 
             default:
                 break;
+
         }
     }
 

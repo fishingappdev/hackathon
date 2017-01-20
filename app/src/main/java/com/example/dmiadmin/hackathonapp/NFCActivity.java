@@ -12,15 +12,16 @@ import android.nfc.TagLostException;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.nfc.tech.NfcA;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public class MainActionActivity extends AppCompatActivity {
+public class NFCActivity extends AppCompatActivity {
+
     NfcAdapter mNfcAdapter;
 
     @Override
@@ -71,7 +72,7 @@ public class MainActionActivity extends AppCompatActivity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 
             NfcA ndef = NfcA.get(tag);
-            writeTag(MainActionActivity.this, tag, "Hello");
+            writeTag(NFCActivity.this, tag, "Hello");
             ndef.getTag();
             try {
                 Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);

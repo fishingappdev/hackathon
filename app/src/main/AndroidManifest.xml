@@ -3,6 +3,7 @@
     package="com.example.dmiadmin.hackathonapp">
 
     <uses-permission android:name="android.permission.NFC" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,8 +25,9 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActionActivity"></activity>
         <activity
-            android:name=".MainActionActivity"
+            android:name=".NFCActivity"
             android:launchMode="singleTop">
             <action android:name="android.nfc.action.TAG_DISCOVERED" />
         </activity>

@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.dmiadmin.hackathonapp.R;
 import com.example.dmiadmin.hackathonapp.geofence.client.models.GeofenceClientModel;
-import com.example.dmiadmin.hackathonapp.geofence.client.models.Post;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 
@@ -38,6 +37,15 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             numStarsView.setText("Outside office");
             numStarsView.setTextColor(Color.RED);
         }
+
+        if(post.getDeviceId().equalsIgnoreCase("355306066443708")){
+            authorView.setText("Swati Singh - EO167DMP");
+        }else if(post.getDeviceId().equalsIgnoreCase("f5893162e133e4a9")){
+            authorView.setText("Nitish Srivastav - EO220DMP");
+        }else{
+            authorView.setText("Unknown");
+        }
+
 //        bodyView.setText(post.body);
 
         starView.setOnClickListener(starClickListener);

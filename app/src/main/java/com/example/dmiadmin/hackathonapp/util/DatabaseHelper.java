@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.dmiadmin.hackathonapp.model.Device;
 import com.example.dmiadmin.hackathonapp.model.Employee;
 
 /**
@@ -90,9 +91,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        db.close();
     }
 
+    public void addAllocation(Device device) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+         // Employee id
+        values.put(EMPLOYEE_ID, device.getEmp_id()); // Employee name
+        values.put(DEVICE_ID, device.getDevice_id());
+
+        // Inserting Row
+        db.insert(TABLE_ALLOCATION, null, values);
+        db.close();
+    }
+
     public int getContactsCount() {
         int count = 0;
-        String countQuery = "SELECT  * FROM " + TABLE_EMPLOYEE;
+        String countQuery = "SELECT  * FROM " + TABLE_ALLOCATION;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
@@ -104,5 +118,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return count;
 
+    }
+
+    public String getEmployeeID(String deviceId) {
+
+        Cursor cursor = null;
+        String empName = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+
+            String query = "SELECT employee_id FROM allocationinfo WHERE device_id='" + deviceId+"'";
+            cursor = db.rawQuery(query,null);
+            if(cursor != null && !cursor.isClosed()) {
+                if (cursor.getCount() > 0) {
+
+                    cursor.moveToFirst();
+                    empName = cursor.getString(cursor.getColumnIndex("employee_id"));
+                }
+            }
+            return empName;
+        }finally {
+
+            cursor.close();
+        }
+    }
+
+    public String getEmployeeDetail(String empId) {
+
+        Cursor cursor = null;
+        String empDetail = "";
+        String employeeId="";
+        String empName="";
+        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+
+            String query = "SELECT * FROM employeeinfo WHERE employee_id='" + empId+"'";
+            cursor = db.rawQuery(query,null);
+            if(cursor != null && !cursor.isClosed()) {
+                if (cursor.getCount() > 0) {
+
+                    cursor.moveToFirst();
+                    employeeId = cursor.getString(cursor.getColumnIndex("employee_id"));
+                     empName = cursor.getString(cursor.getColumnIndex("employee_name"));
+                }
+            }
+            return empName+"("+employeeId+")";
+        }finally {
+
+            cursor.close();
+        }
     }
 }

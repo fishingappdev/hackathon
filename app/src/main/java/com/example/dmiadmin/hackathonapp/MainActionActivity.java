@@ -21,20 +21,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dmiadmin.hackathonapp.QRUtil.QRGenerator;
+import com.example.dmiadmin.hackathonapp.geofence.GeofenceActivity;
+import com.example.dmiadmin.hackathonapp.geofence.client.MainClientActivity;
+import com.example.dmiadmin.hackathonapp.model.Device;
 import com.example.dmiadmin.hackathonapp.model.Employee;
 import com.example.dmiadmin.hackathonapp.util.DatabaseHelper;
 import com.example.dmiadmin.hackathonapp.utilhack.Utils;
-
-import com.example.dmiadmin.hackathonapp.geofence.GeofenceActivity;
-import com.example.dmiadmin.hackathonapp.geofence.client.MainClientActivity;
 import com.google.firebase.auth.FirebaseAuth;
-
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -74,12 +72,40 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
          * */
         // Inserting employee
         Log.d("Insert: ", "Inserting ..");
-//        db.addEmployee(new Employee("EO167DMP", "Swati Singh"));
-//        db.addEmployee(new Employee("EO139DMP", "Karan Singh"));
-//        db.addEmployee(new Employee("EO275DMP","Sarthak Srivastava"));
-//        db.addEmployee(new Employee("EO268DMP","Siddharth Dixit"));
-//        db.addEmployee(new Employee("EO220DMP","Nitish Srivastava"));
-       Log.d("countemployee",db.getContactsCount()+">>");
+        db.addEmployee(new Employee("EO167DMP", "Swati Singh"));
+        db.addEmployee(new Employee("EO139DMP", "Karan Singh"));
+        db.addEmployee(new Employee("EO275DMP", "Sarthak Srivastava"));
+        db.addEmployee(new Employee("EO268DMP", "Siddharth Dixit"));
+       db.addEmployee(new Employee("EO220DMP","Nitish Srivastava"));
+
+        db.addAllocation(new Device("355306066443708", "EO167DMP"));
+        db.addAllocation(new Device("f5893162e133e4a9", "EO220DMP"));
+
+        String employeeid=db.getEmployeeID("355306066443708");
+        String employeeDetail=db.getEmployeeDetail(employeeid);
+
+        String employeeid1=db.getEmployeeID("f5893162e133e4a9");
+        String employeeDetail1=db.getEmployeeDetail(employeeid1);
+        Log.d("Employeename=", employeeDetail+">>"+employeeDetail1);
+
+
+        Log.d("countemployee",db.getContactsCount()+">>");
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+        } else {
+            permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
+            } else {
+
+
+            }
+
+
+        }
+
 
 
 

@@ -28,6 +28,7 @@ import com.google.firebase.database.Transaction;
 public abstract class PostListFragment extends Fragment {
 
     private static final String TAG = "PostListFragment";
+    public static String EMPLOYEE_DETAIL="";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;

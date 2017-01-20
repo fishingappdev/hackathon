@@ -63,7 +63,11 @@ public class GeofenceActivity extends BaseActivity {
         });
 //        FirebaseDatabase.setAndroidContext(this);
 //        FirebaseApp.initializeApp(getApplicationContext());
-        setupFirebase();
+        try {
+            setupFirebase();
+        }catch (Exception er){
+            er.printStackTrace();
+        }
     }
 
     @Override
@@ -98,7 +102,7 @@ public class GeofenceActivity extends BaseActivity {
 //                    .setExpirationDuration(Geofence.NEVER_EXPIRE)
 //                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
 //                    .build();
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             toast("Error parsing input.");
         }
     }
@@ -122,7 +126,7 @@ public class GeofenceActivity extends BaseActivity {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                Toast.makeText(GeofenceActivity.this, "Saved",
+                Toast.makeText(GeofenceActivity.this, "Geofence data saved on server.",
                         Toast.LENGTH_SHORT).show();
             }
         });

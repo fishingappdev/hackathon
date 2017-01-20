@@ -182,7 +182,7 @@ public class GeofenceClientActivity extends BaseActivity {
                     .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
                     .build();
             return new GeofencingRequest.Builder().addGeofence(geofence).build();
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             toast("Error parsing input.");
             return null;
         }

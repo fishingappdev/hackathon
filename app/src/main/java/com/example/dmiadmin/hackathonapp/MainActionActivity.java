@@ -1,43 +1,68 @@
 package com.example.dmiadmin.hackathonapp;
 
 import android.app.PendingIntent;
-<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.FormatException;
-=======
-import android.content.Intent;
->>>>>>> Initial push
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-<<<<<<< HEAD
 import android.nfc.TagLostException;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
-=======
->>>>>>> Initial push
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-<<<<<<< HEAD
+import com.example.dmiadmin.hackathonapp.util.DatabaseHelper;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-=======
->>>>>>> Initial push
-public class MainActionActivity extends AppCompatActivity {
+import com.example.dmiadmin.hackathonapp.model.Employee;
+import com.example.dmiadmin.hackathonapp.util.DatabaseHelper;
+
+public class MainActionActivity extends AppCompatActivity implements View.OnClickListener{
     NfcAdapter mNfcAdapter;
+    private Button mAddBtn,mRemoveBtn,mAllocateBtn,mDeallocateBtn,mGeofenceBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_action);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        mAddBtn=(Button)findViewById(R.id.add_device_button);
+        mRemoveBtn=(Button)findViewById(R.id.remove_device_button);
+        mAllocateBtn=(Button)findViewById(R.id.allocate_device_button);
+        mDeallocateBtn=(Button)findViewById(R.id.deallocate_device_button);
+        mGeofenceBtn=(Button)findViewById(R.id.geofence_device_button);
+
+        mAddBtn.setOnClickListener(this);
+        mRemoveBtn.setOnClickListener(this);
+        mAllocateBtn.setOnClickListener(this);
+        mDeallocateBtn.setOnClickListener(this);
+        mGeofenceBtn.setOnClickListener(this);
+
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        /**
+         * CRUD Operations
+         * */
+        // Inserting employee
+        Log.d("Insert: ", "Inserting ..");
+        db.addEmployee(new Employee("EO167DMP", "Swati Singh"));
+        db.addEmployee(new Employee("EO139DMP", "Karan Singh"));
+        db.addEmployee(new Employee("EO275DMP","Sarthak Srivastava"));
+        db.addEmployee(new Employee("EO268DMP","Siddharth Dixit"));
+        db.addEmployee(new Employee("EO220DMP","Nitish Srivastava"));
+
+
 
         if (mNfcAdapter == null) {
             // Stop here, we definitely need NFC
@@ -81,21 +106,16 @@ public class MainActionActivity extends AppCompatActivity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 
             NfcA ndef = NfcA.get(tag);
-<<<<<<< HEAD
             writeTag(MainActionActivity.this, tag, "Hello");
             ndef.getTag();
-=======
->>>>>>> Initial push
+
             try {
                 Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 
                 if (messages != null) {
                     NdefMessage[] ndefMessages = new NdefMessage[messages.length];
                     for (int i = 0; i < messages.length; i++) {
-<<<<<<< HEAD
-=======
 
->>>>>>> Initial push
                         ndefMessages[i] = (NdefMessage) messages[i];
                     }
                     NdefRecord record = ndefMessages[0].getRecords()[0];
@@ -110,7 +130,6 @@ public class MainActionActivity extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
 
     public static boolean writeTag(Context context, Tag tag, String data) {
         // Record to launch Play Store if app is not installed
@@ -176,6 +195,13 @@ public class MainActionActivity extends AppCompatActivity {
         return false;
     }
 
-=======
->>>>>>> Initial push
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.add_device_button:
+                startActivity(new Intent(MainActionActivity.this,AddDeviceActivity.class));
+                break;
+        }
+    }
 }

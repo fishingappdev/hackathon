@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_20"
+    android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:textColor="@color/theme_blue"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="@dimen/sp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="@string/tap_nfc_tag"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OR"
+        android:textColor="@color/theme_blue"
+        android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/scan_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/button_selector"
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/white"
+        android:text="Scan QR Code"/>
+
+
+</LinearLayout>

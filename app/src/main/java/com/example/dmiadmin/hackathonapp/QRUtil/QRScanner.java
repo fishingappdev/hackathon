@@ -74,7 +74,7 @@ public class QRScanner extends AppCompatActivity {
     private void initBarcodeScanner() {
         mCapture = new CaptureManager(this, mBarcodeScannerView);
         mCapture.initializeFromIntent(getIntent(), mSavedInstanceState);
-        mCapture.decode();
+//        mCapture.decode();
     }
 
     private void initBarcodeScannerWrapper() {

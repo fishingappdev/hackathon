@@ -191,6 +191,7 @@ public class GeofenceClientActivity extends BaseActivity {
 
     private void getGeofenceData() {
         infoText.setText("Getting geofence from server");
+        FirebaseApp.initializeApp(GeofenceClientActivity.this);
         FirebaseDatabase.getInstance().getReference().child("geofence")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -228,10 +229,10 @@ public class GeofenceClientActivity extends BaseActivity {
             geofenceClientModel.setDeviceId(android_id);
             geofenceClientModel.setInsideGeofence(isInsideGeofence);
 
-            DatabaseReference listOfObjects = mUserGeofenceReference.orderByChild("deviceId").equalTo(deviceId).getRef();
-            listOfObjects.removeValue(new DatabaseReference.CompletionListener() {
-                @Override
-                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+//            DatabaseReference listOfObjects = mUserGeofenceReference.orderByChild("deviceId").equalTo(deviceId).getRef();
+//            listOfObjects.removeValue(new DatabaseReference.CompletionListener() {
+//                @Override
+//                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     // Push the comment, it will appear in the list
                     mUserGeofenceReference.push().setValue(geofenceClientModel, new DatabaseReference.CompletionListener() {
                         @Override
@@ -241,8 +242,8 @@ public class GeofenceClientActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-            });
+//                }
+//            });
 
         }
     }

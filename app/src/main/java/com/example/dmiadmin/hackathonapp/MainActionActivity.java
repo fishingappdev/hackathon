@@ -33,6 +33,7 @@ import com.example.dmiadmin.hackathonapp.utilhack.Utils;
 
 import com.example.dmiadmin.hackathonapp.geofence.GeofenceActivity;
 import com.example.dmiadmin.hackathonapp.geofence.client.MainClientActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.io.IOException;
@@ -95,6 +96,12 @@ public class MainActionActivity extends AppCompatActivity implements View.OnClic
 
         //method to handle your intent
         handleTag(getIntent());
+try {
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    mAuth.signInWithEmailAndPassword("softprodigy010@gmail.com", "mohali123");
+}catch (Exception er){
+    er.printStackTrace();
+}
     }
 
     @Override

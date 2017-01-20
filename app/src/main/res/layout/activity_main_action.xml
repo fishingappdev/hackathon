@@ -1,13 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_action"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dmiadmin.hackathonapp.MainActionActivity">
+    android:fillViewport="true">
+    <RelativeLayout
+        android:id="@+id/activity_main_action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.dmiadmin.hackathonapp.MainActionActivity">
+        <RelativeLayout
+            android:id="@+id/top_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/add_device_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:elevation="@dimen/dp_12"
+                android:layout_alignParentLeft="true"
+                android:text="ADD"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/dp_20"
+                />
+            <Button
+                android:id="@+id/remove_device_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:layout_alignParentRight="true"
+                android:text="REMOVE"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/dp_20"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/middle_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_below="@+id/top_row">
+            <Button
+                android:id="@+id/allocate_device_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:elevation="@dimen/dp_12"
+                android:text="ALLOCATE"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                />
+            <Button
+                android:id="@+id/deallocate_device_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:layout_alignParentRight="true"
+                android:text="DEALLOCATE"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/dp_20"
+                />
+        </RelativeLayout>
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/bottom_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_below="@+id/middle_row"
+            >
+            <Button
+                android:id="@+id/geofence_device_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_selector"
+                android:elevation="@dimen/dp_12"
+                android:text="GEOFENCE"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -14,7 +14,8 @@
             android:name="android.hardware.nfc"
             android:required="true" />
 
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,13 +25,17 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActionActivity"></activity>
+
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NFCActivity"
             android:launchMode="singleTop">
             <action android:name="android.nfc.action.TAG_DISCOVERED" />
         </activity>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
